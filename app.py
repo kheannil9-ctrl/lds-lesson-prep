@@ -113,9 +113,9 @@ if submit_button:
 """
             try:
                 # ตรวจหาโมเดลที่เปิดใช้งานได้ในบัญชีนี้โดยอัตโนมัติ
-available = [m.name for m in genai.list_models() if "generateContent" in m.supported_generation_methods]
-chosen_model = next((m for m in available if "flash" in m), available[0] if available else "gemini-pro")
-model = genai.GenerativeModel(chosen_model)
+                available = [m.name for m in genai.list_models() if "generateContent" in m.supported_generation_methods]
+                chosen_model = next((m for m in available if "flash" in m), available[0] if available else "gemini-pro")
+                model = genai.GenerativeModel(chosen_model)
                 response = model.generate_content(system_instruction)
                 
                 st.success("✅ สร้างแผนการสอนสำเร็จแล้ว!")
