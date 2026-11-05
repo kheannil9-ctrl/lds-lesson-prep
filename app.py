@@ -112,14 +112,11 @@ if submit_button:
 > 💡 **ข้อเตือนใจสำหรับผู้สอน:** แผนการสอนนี้จัดทำขึ้นโดย AI เพื่อเป็นตัวช่วยตั้งต้นและอาจมีข้อผิดพลาดได้ ขอแนะนำให้ท่านสวดอ้อนวอนและไตร่ตรองควบคู่ไปด้วยเสมอ พร้อมปรับเปลี่ยนเนื้อหาตามการทรงนำของพระวิญญาณบริสุทธิ์เพื่อตอบโจทย์ผู้เรียนในชั้นเรียนอย่างแท้จริงครับ/ค่ะ
 """
             try:
-                # ตรวจหาโมเดลที่เปิดใช้งานได้ในบัญชีนี้โดยอัตโนมัติ
-                available = [m.name for m in genai.list_models() if "generateContent" in m.supported_generation_methods]
-                chosen_model = next((m for m in available if "flash" in m), available[0] if available else "gemini-pro")
-                model = genai.GenerativeModel(chosen_model)
-                response = model.generate_content(system_instruction)
-                
-                st.success("✅ สร้างแผนการสอนสำเร็จแล้ว!")
-                st.markdown(response.text)
+            model = genai.GenerativeModel("gemini-2.5-flash")
+            response = model.generate_content(system_instruction)
+            
+            st.success("✅ สร้างแผนการสอนสำเร็จแล้ว!")
+            st.markdown(response.text)
                 
                 # ปุ่มดาวน์โหลดเอกสาร
                 st.download_button(
